@@ -1,0 +1,56 @@
+#+TITLE: Nix Helpers
+#+AUTHOR: Krizdano
+#+DESCRIPTION: A simple script to simplify the usage of various nix commands.
+#+STARTUP: overview
+
+This is a simple script to simplify the usage of various nix commands. This script provides
+a convenient way to run various nix commands with a shorter syntax.
+
+#+begin_quote
+Currently only have implementations for =nix shell= and =nix run=
+#+end_quote
+
+* Nix Shell
+** Usage
+By default it installs packages from Nixpkgs.
+
+#+begin_src bash
+  nshell pkgname
+#+end_src
+
+You can provide the option =-g= to install packages from github. For example you can create a ~nix shell~ with [[https://github.com/nix-community/nix-init][nix-init]] by running:
+
+#+begin_src bash
+  nshell -g nix-community/nix-init
+#+end_src
+
+Intall multiple packages by providing them as command line arguments:
+
+#+begin_src bash
+  nshell pkg1 pkg2 pkg3...
+#+end_src
+
+* Nix Run
+** Usage
+By default it runs packages from Nixpkgs.
+
+#+begin_src bash
+  nrun pkgname
+#+end_src
+
+You can provide the option =-g= to install packages from github. For example you can run [[https://github.com/nix-community/nix-init][nix-init]] using:
+
+#+begin_src bash
+  nrun -g nix-community/nix-init
+#+end_src
+
+Run packages with arguments:
+
+#+begin_src bash
+  nrun pkgname --help
+#+end_src
+
+* Options
+- =-i= - *Allows installation of unfree packages*.
+- =-g= - *Install packages from [[https://github.com][GitHub]]*.
+- =-o= - *Pass optional arguments to underlying Nix command*.
