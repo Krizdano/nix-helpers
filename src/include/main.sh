@@ -4,17 +4,19 @@ impure_flag=0
 run_flag=0
 options_flag=0
 flake_url="nixpkgs#"
-delimiter="--"
+delimiter="--*"
 
 get_options() {
     delimiter_index=$((${#args[@]} - 1))
     for element in "${!args[@]}"; do
         if [[ "${args[element]}" == $delimiter ]]; then
-            delimiter_index=$i
+            delimiter_index=$element
+            options=("${args[@]:$((delimiter_index))}")
+        else
+            options=" "
         fi
     done
 
-    options=("${args[@]:$((delimiter_index+1))}")
 
     if [ $options_flag -eq 1 ]; then
         echo "${options[@]}"
